@@ -13,11 +13,40 @@ alias pp="ptpython3"
 alias work="cd ~/Documents/Work"
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
 alias brew='arch -arm64e /opt/homebrew/bin/brew'
+alias gg='rlwrap yaegi -unrestricted'
+alias ga='git add'
+alias gs='git status'
+alias gl='git log'
+alias gc='git commit'
+alias gp='git push'
+alias python=python3
+alias .zshrc="vim ${HOME}/.zshrc && source ${HOME}/.zshrc"
+alias vi=nvim
+alias pip="python3 -m pip"
+alias tf=terraform
+
 export HOMEBREW_ARTIFACTORY_SECRET=AKCp5dLCcDynXVea9hezKcYKhcafWodoGbr6ECKcjbBQQ574vq4BXrB81piqJiRxXECT7rZNd
+
 
 export XDG_DATA_HOME=/Users/valid/.config
 
 export LC_ALL=en_US.UTF-8
+
+rm() {
+   if [[ "$@" == *"-fr"* ]] || [[ "$@" == *"-rf"* ]]; then
+      echo "Stop." >&2
+      echo "Seriously." >&2
+      echo "You almost blew up your computer." >&2
+      echo 'WHAT WERE YOU THINKING!?!?!' >&2
+      echo "You are going to execute rm $@. Are you sure? Type exactly 'yes' if you are."
+      read is_sure
+      if [[ $is_sure == "yes" ]]; then
+         /bin/rm $@
+      fi
+   else
+     /bin/rm $@
+   fi
+}
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -107,8 +136,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 eval "$(thefuck --alias)"
-#eval "$(starship init zsh)"
-alias vi=nvim
 
 PATH="/Users/valid/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/Users/valid/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
@@ -139,8 +166,5 @@ export PATH="/usr/local/bin:$PATH"
 TMUX_PLUGIN_MANAGER_PATH="/Users/valid/.tmux/plugins/"; export TMUX_PLUGIN_MANAGER_PATH;
 
 eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
-#export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
-#export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
 export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
 export PATH=$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH
